@@ -12,6 +12,15 @@ body a{
 	-o-transition:0.5s all;
 	-ms-transition:0.5s all;
 }
+#ced{
+    color: #e7663f !important;
+    
+    text-shadow: 1px 1px 2px #e7663f;
+}
+#host {
+    color: #585CA7;
+    text-shadow: 1px 1px 2px blue;
+}
 input[type="button"]{
 	transition:0.5s all;
 	-webkit-transition:0.5s all;
@@ -1641,7 +1650,7 @@ a.button4:hover {
 .register-but{
 	margin-top:1em;
 }
-.register-but form input[type="submit"] {
+.register-but form input[type="submit"] .register-but input[type="submit"] {
 	background: #e7663f;
 	color: #FFF;
 	font-size: 1.2em;
