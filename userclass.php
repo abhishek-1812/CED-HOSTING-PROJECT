@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Short description for code
  * php version 7.2.10
@@ -12,7 +13,9 @@
  * This is a "Docblock Comment," also known as a "docblock."  The class'
  * docblock, below, contains a complete description of how to write these.
  */
-
+if (!isset($_SESSION)) { 
+    session_start(); 
+} 
 class Userclass
 {
     public $userid;
@@ -61,22 +64,28 @@ class Userclass
     {
         $sql= "SELECT * FROM `tbl_user` WHERE 
         `email`='$username' AND `password`='$password'"; 
-
+        //require_once 'header.php';
         $res = $data->query($sql);
         if ($res->num_rows >0) {
             while ($row = $res->fetch_array()) {
-                if ($row['is_admin']=='1') {
-                    $_SESSION['admindata']=array('email' => $row['username'],
+                $who = $row['is_admin'];
+                if ($who=='1') {
+                    $_SESSION['admindata']=array('name' => $row['name'],
                     'id' => $row['id'],'is_admin'=>$row['is_admin']);
-                    header('Location: ../CEDHOSTINGPROJECT/Admin/index.php');
-                } elseif ($row['is_admin']=='0') {
-                    $_SESSION['userdata']=array('name'=>$row['name'],'mobile'=>$row['mobile'], 'email' => $row['username'],
+                    $output = 1;
+
+                } elseif ($who=='0') {
+                    $_SESSION['userdata']=array('name'=>$row['name'],'mobile'=>$row['mobile'], 'email' => $row['email'],
                     'id' => $row['id'],'is_admin'=>$row['is_admin']);
-                    header('Location: index.php');
+                    $output = 2;
                 }
             }
         } else {
-            $msg = 'Invalid Details'; 
+            $output = 'Invalid Details'; 
         }
+        return $output;
     }
+
+   
 }
+?>

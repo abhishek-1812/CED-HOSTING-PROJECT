@@ -12,8 +12,7 @@ require 'dbcon.php';
 require 'userclass.php';
 $obj = new dbcon();
 $data = $obj->connect();
-session_start();
-
+//session_start();
 $errors = array();
 $msg = '';
 

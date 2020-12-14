@@ -6,7 +6,7 @@ $(document).ready(function(){
     var repassword;
     var sec_ques;
     var sec_ans;
-    var message;
+    
 
     $("#submits").click(function(){
 
@@ -137,9 +137,21 @@ $(document).ready(function(){
         }
 
         $("#submit").click(function(){
-
+            // e.preventDefault();
+            
             username = $('#email').val();
             password = $('#password').val();
+
+            if (username == "") {
+                alert('Email Is Required !');
+                $('#email').focus();
+                return false;
+    
+            } else if (password =="") {
+                alert('Password Is Required !');
+                $('#password').focus();
+                return false;
+            } 
 
             var action = "login";
             $.ajax({
@@ -152,8 +164,14 @@ $(document).ready(function(){
                 }, 
                 
                 success : function(data) {
-                    alert(data);
-                    //console.log(data);
+                    debugger;
+                    if(data == 1) {
+                        window.location.href="Admin/index.php";
+                    } else if(data == 2) {
+                        window.location.href = "index.php";
+                    } else {
+                        alert(data);
+                    }
                 }
             });
         });
