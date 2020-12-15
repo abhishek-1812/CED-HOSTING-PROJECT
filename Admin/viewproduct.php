@@ -19,6 +19,9 @@ $obj = new dbcon();
 $data = $obj->connect();
 $prodobjects = new Productclass();
 $msg  = $prodobjects->displayService($data);
+// print_r($msg);
+// echo "<pre>";
+// echo $msg[0]['id'];
 ?>
 
 <div class="container-fluid mt-5">
@@ -71,8 +74,8 @@ $msg  = $prodobjects->displayService($data);
                         <label class="form-control-label" for="input-username"><span>Select Product Category <label style="color:red">*</label></span></label>
                         <select class="form-control" id="sel">
                         <option value="CHOOSE" SELECTED>CHOOSE</option>
-                        <?php foreach($msg as $key=>$val) : ?>
-                        <option value="<?php echo $val['prod_name'];?>"><?php echo $val['prod_name'];?></option>
+                        <?php foreach($msg as $key) : ?>
+                        <option value="<?php echo $key['id'];?>"><?php echo $key['prod_name'];?></option>
                         <?php endforeach;?>
                          
                         </select>
@@ -209,6 +212,7 @@ $msg  = $prodobjects->displayService($data);
                 data : {id:id, action:action},
                 success : function (data) {
                     //console.log(data);
+                   
                     $('#pname').val(data[0]['prod_name']);
                     $('#url').val(data[0]['html']);
                     $('#monthprice').val(data[0]['mon_price']);
@@ -226,50 +230,72 @@ $msg  = $prodobjects->displayService($data);
 
       $('#updated').click(function(){
              
-        var pid = $('#abhisak').val();
-        var name = $('#prod_name').val();
+        var sel = $('#sel').val();
+        
+        var name = $('#pname').val();
         var url = $('#url').val();
         var monthprice = $('#monthprice').val();
-        var annualprice = $('#annualPrice').val();
+        var annualprice = $('#annualprice').val();
         var sku = $('#sku').val();
-        var webspace = $('#space').val();
-        var bandwidth = $('#band').val();
+        var space = $('#space').val();
+        var band = $('#band').val();
         var domain = $('#domain').val();
-        var language = $('#tech').val();
-        var mail = $('#mail').val();
+        var tech = $('#tech').val();
+        var mail = $('#mailbox').val();
+        var pid = $('#abhisak').val();
       
-        // alert(cid);
+        //  alert(sel);
        
         var action = 'updateProduct';
         $.ajax({
             url : '../ajaxaction.php',
             type : 'POST',
             data : {
-                pid : pid,
+                sel : sel,               
                 name : name,
                 url : url,
                 monthprice : monthprice,
                 annualprice : annualprice,
                 sku : sku,
-                webspace : webspace,
+                space : space,
                 band : band,
                 domain : domain,
-                language : language,
-                mail : mail,              
+                tech : tech,
+                mail : mail,  
+                pid : pid,            
                 action : action
             },
             success : function(data)
             {
-                alert(data);
-                window.location.reload();
+              alert(data);
+              window.location.reload();
             }
         });
 
     });
 
-    
+    $('#product').on("click",'#deletecategory', function(){
+      if(confirm("Are you sure you want to delete?")==true){
+        var id = $(this).data("did");
+        var element = $(this).val();
+        var action ='deleteAllProduct';
+    //  alert(id);
+        $.ajax({
+                url : '../ajaxaction.php',
+                type : "POST",
+                data : {id:id, action:action},
+                success : function (data) {
+                  if(data==1){  
 
-
+                    $(element).closest("tr").remove();
+                    window.location.reload(true);
+                  } else {
+                    alert(data);
+                  }
+                }
+            });
+      }
+    })
 });
   $('#product').DataTable({
     "ajax": "../ajaxaction.php?viewProduct=1"

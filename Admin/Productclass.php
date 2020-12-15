@@ -25,14 +25,12 @@ class Productclass
             VALUES ('".$name."','".$link."','".$avail."')";
 
         if ($data->query($sql) === true) {    
-            $msg = 'Product added succesfully';  
+            $msg = 'Product Added Succesfully';  
         } else {
             $msg =  'Error';
         } 
         return $msg;       
-    }
-   
-
+    }   
     public function fetchProduct($data)
     {
         $row['data'] = array();
@@ -44,11 +42,9 @@ class Productclass
                 $row['data'][] = array($data['id'], $data['prod_parent_id'], $data['prod_name'], $data['html'], $data['prod_available'], $data['prod_launch_date'],"<input type='submit' class='btn btn-danger delete' data-did='$data[id]' value='DELETE'><input type='submit' class='btn btn-success edit' data-eid='$data[id]' value='EDIT' data-toggle='modal' data-target='#exampleModal'>");
             }
             return json_encode($row);
-        }
-        else {
+        } else {
             return false;
-        }
-       
+        }       
     }
     public function deleteProduct($id, $data)
     {
@@ -90,7 +86,7 @@ class Productclass
     public function InsertProduct($sel, $pname, $url, $monthprice, $annualprice, $sku, $desc, $data)
     {
         $sql = "INSERT INTO `tbl_product`(`prod_parent_id`,`prod_name`,`html`,`prod_available`,`prod_launch_date`) VALUES 
-        ('$sel','$pname','$url','0',NOW())";
+        ('$sel','$pname','$url','1',NOW())";
 
         if ($data->query($sql) === true) {
 
@@ -102,7 +98,7 @@ class Productclass
             if ($data->query($sql1) === true) {
                 $output = "Product Added Successfully";
             }
-        }  else {
+        } else {
                 $output =  "Error updating record: " . $data->error;
         }
           return $output;
@@ -133,8 +129,8 @@ class Productclass
 
                 $arr['data'][] = array($row['prod_parent_id'], $row['prod_name'], $row['html'], $row['mon_price'],
                 $row['annual_price'],$row['sku'],$row['prod_available'],$row['prod_launch_date'], $webs, $band, $domain, $language, $mail, "<a href='javascript:void(0)' class='btn btn-success'
-                data-eid='".$row['prod_id']."' id='editcategory' data-toggle='modal' data-target='#exampleModal'>Edit</a> <a href='javascript:void(0)' 
-                class='btn btn-danger' data-did='".$row['id']."' id='deletecategory'>DELETE</a>"); 
+                data-eid='".$row['prod_id']."' id='editcategory' data-toggle='modal' data-target='#exampleModal'>EDIT</a> <a href='javascript:void(0)' 
+                class='btn btn-danger' data-did='".$row['prod_id']."' id='deletecategory'>DELETE</a>"); 
             }
     
             return json_encode($arr);
@@ -175,20 +171,19 @@ class Productclass
         }
         return json_encode($arr);
     }
-
-    public function UpdatedProduct($pid, $pname, $url, $monthprice, $annualprice, $sku, $space, $domain, $band, $tech, $mailbox, $data)
+    public function UpdatedProduct($sel, $pname, $url, $monthprice, $annualprice, $sku, $space, $domain, $band, $tech, $mail, $pid, $data)
     {
         $description = array(
-            'web'=>$space,
-            'band'=>$band,
+            'webspace'=>$space,
+            'bandwidth'=>$band,
             'domain'=>$domain,
             'lang'=>$tech,
-            'mail'=>$mailbox
+            'mail'=>$mail
         );
         $jsonDesc = json_encode($description);
 
 
-        $sql = "UPDATE `tbl_product` SET `prod_parent_id` = '$pid', `prod_name` = '$pname', `html` = '$url'
+        $sql = "UPDATE `tbl_product` SET `prod_parent_id` = '$sel', `prod_name` = '$pname', `html` = '$url'
         WHERE `id` = '$pid' ";
         if ($data->query($sql) === true) {
           
@@ -206,6 +201,37 @@ class Productclass
             $msg = "Error updating record: " . $data->error;
         }
         return $msg;
+    }
+    public function deleteAllProduct($id, $data)
+    {      
+        $sql = "DELETE `tbl_product`,`tbl_product_description` FROM `tbl_product`
+        INNER JOIN `tbl_product_description` ON `tbl_product`.`id` = `tbl_product_description`.`prod_id`
+        WHERE `prod_id`='$id'";
+
+        if ($data->query($sql) == true) {
+
+            $msg=1;
+           
+        } else {
+            $msg =  "Error deleting record: " . $data->error;
+        }
+        return $msg;
+    }
+    public function FetchHosting($id, $data)
+    {
+        $sql = "SELECT * FROM `tbl_product` WHERE `id`='$id'";
+        $result = $data->query($sql);
+
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+                $arr[] = $row;
+            }
+            return $arr;
+        } else {
+            echo "0 results";
+        }
+
     }
 }
 ?>

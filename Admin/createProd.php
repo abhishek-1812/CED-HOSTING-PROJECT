@@ -42,8 +42,8 @@ $msg  = $prodobjects->displayService($data);
                         <label class="form-control-label" for="input-username"><span>Select Product Category <label style="color:red">*</label></span></label>
                         <select class="form-control" id="sel">
                         <option value="CHOOSE" SELECTED>CHOOSE</option>
-                        <?php foreach($msg as $key=>$val) : ?>
-                        <option value="<?php echo $val['prod_name'];?>"><?php echo $val['prod_name'];?></option>
+                        <?php foreach($msg as $key) : ?>
+                        <option value="<?php echo $key['id'];?>"><?php echo $key['prod_name'];?></option>
                         <?php endforeach;?>
                          
                         </select>
@@ -162,7 +162,7 @@ $msg  = $prodobjects->displayService($data);
       <script>
         $(document).ready(function(){
 
-          $('#submit').attr("disabled", true);
+          //$('#submit').attr("disabled", true);
 
           var pname;
           var select;
@@ -176,28 +176,30 @@ $msg  = $prodobjects->displayService($data);
           var tech;
           var mailbox;
 
-          var fields = "#sel, #pname, #url, #monthprice, #annualprice, #sku, #space,\
-          #band, #domain, #tech, #mailbox";
+          // var fields = "#sel, #pname, #url, #monthprice, #annualprice, #sku, #space,\
+          // #band, #domain, #tech, #mailbox";
 
-          $(fields).on('change', function() {
-              if (allFilled()) {
-                  $('#submit').removeAttr('disabled');
-              } else {
-                  $('#submit').attr('disabled', 'disabled');
-              }
-          });
+          // $(fields).on('change', function() {
+          //     if (allFilled()) {
+          //         $('#submit').removeAttr('disabled');
+          //     } else {
+          //         $('#submit').attr('disabled', 'disabled');
+          //     }
+          // });
 
-          function allFilled() {
-              var filled = true;
-              $(fields).each(function() {
-                  if ($(this).val() == '') {
-                      filled = false;
-                  }
-              });
-              return filled;
-          } 
+          // function allFilled() {
+          //     var filled = true;
+          //     $(fields).each(function() {
+          //         if ($(this).val() == '') {
+          //             filled = false;
+          //         }
+          //     });
+          //     return filled;
+          // } 
 
-          $("#submit").click(function(){
+          $("#submit").click(function(event){
+
+            event.preventDefault();
           
             sel = $("#sel").val();
             pname = $("#pname").val();

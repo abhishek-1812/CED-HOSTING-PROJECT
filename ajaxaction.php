@@ -106,8 +106,7 @@ if (isset($_POST['action'])) {
         break;
 
     case 'updateProduct':
-
-        $pid = $_POST['pid'];
+        $sel = $_POST['sel'];     
         $pname = $_POST['name'];
         $url = $_POST['url'];
         $monthprice = $_POST['monthprice'];
@@ -117,9 +116,16 @@ if (isset($_POST['action'])) {
         $domain = $_POST['domain'];
         $band = $_POST['band'];
         $tech = $_POST['tech'];
-        $mailbox = $_POST['mail'];
+        $mail = $_POST['mail'];
+        $pid = $_POST['pid'];
+        
+        $msg = $prodobjects->UpdatedProduct($sel, $pname, $url, $monthprice, $annualprice, $sku, $space, $domain, $band, $tech, $mail, $pid, $data);
+        echo $msg;
+        break;
 
-        $msg = $prodobjects->UpdatedProduct($pid, $pname, $url, $monthprice, $annualprice, $sku, $space, $domain, $band, $tech, $mailbox, $data);
+    case 'deleteAllProduct':
+        $id = $_POST['id'];
+        $msg =  $prodobjects->deleteAllProduct($id, $data);
         echo $msg;
         break;
     }
