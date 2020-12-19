@@ -16,7 +16,7 @@
 require '../dbcon.php';
 
 require 'Productclass.php';
-$obj = new dbcon();
+$obj = new dbcons();
 $data = $obj->connect();
 
 $prodobjects = new Productclass();

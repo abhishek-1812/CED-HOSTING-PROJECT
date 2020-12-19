@@ -9,13 +9,12 @@
  * @license  http://www.php.net/license/3_01.txt 
  * @link     http://pear.php.net/package/PackageName 
  * 
- * This is a "Docblock Comment," also known as a "docblock."  The class'
- * docblock, below, contains a complete description of how to write these.
- */
+ * This is a "Docblock Comment,"
+ */     
 require 'header1.php';
 require '../dbcon.php';
 require 'Productclass.php';
-$obj = new dbcon();
+$obj = new dbcons();
 $data = $obj->connect();
 ?>
 <div class="conatiner-fluid mt-3">
@@ -31,8 +30,11 @@ $data = $obj->connect();
     <input type="text" class="form-control text-center mb-3" id="name" placeholder="Enter Product Name here!" required> 
   </div>
 
-  <div class="form-group">  
+  <!-- <div class="form-group">  
     <input type="text" class="form-control text-center mb-3" id="link" placeholder="Link" required>
+  </div> -->
+  <div class="form-group">
+         <textarea id="editor"></textarea>
   </div>
 
   <div class="form-group">
@@ -148,7 +150,7 @@ $data = $obj->connect();
 
         $('#example').on("click",'.edit', function(){
             var id = $(this).data("eid");
-            // alert(id);
+           
             var element = $(this).val();
             var action ='editProduct';
             $.ajax({

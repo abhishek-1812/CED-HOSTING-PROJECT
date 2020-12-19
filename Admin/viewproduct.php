@@ -15,7 +15,7 @@
 require 'header1.php';
 require 'Productclass.php';
 require '../dbcon.php';
-$obj = new dbcon();
+$obj = new dbcons();
 $data = $obj->connect();
 $prodobjects = new Productclass();
 $msg  = $prodobjects->displayService($data);
@@ -184,10 +184,8 @@ $msg  = $prodobjects->displayService($data);
                 </div>
                 <hr class="my-4"/>
                 <input type="hidden" id="abhisak">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
-                
+                <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>               
                 <button type="button" id="updated" class="btn btn-success">UPDATE</button>
-             
               </form>
       </div>     
     </div>

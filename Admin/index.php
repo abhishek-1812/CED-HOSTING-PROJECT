@@ -16,7 +16,7 @@ require 'header1.php';
 
 
 if (empty($_SESSION['admindata'])) {
-  echo '<script>window.location.href="../login.php";</script>';
+    echo '<script>window.location.href="../login.php";</script>';
     // header('Location: ../login.php');
 } else {
     ?>

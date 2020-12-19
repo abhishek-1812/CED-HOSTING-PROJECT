@@ -15,7 +15,19 @@
  */
 if (!isset($_SESSION)) { 
     session_start(); 
-} 
+}
+/**
+ * User Class Doc Comment
+ * 
+ * @category  Class
+ * @package   Userclass
+ * @author    Abhishek Singh <author@example.com>
+ * @copyright 2020 Company, Inc. All rights reserved.
+ * @license   GNU General Public License version.
+ * @link      http://company.com
+ * 
+ * @since 1.0.1
+ */
 class Userclass
 {
     public $userid;
@@ -26,6 +38,19 @@ class Userclass
     public $mobile;
     public $email;
 
+    /**
+     * Function for registration
+     * 
+     * @param name     $name     comment
+     * @param mobile   $mobile   comment
+     * @param email    $email    comment
+     * @param password $password comment
+     * @param ques     $ques     comment
+     * @param ans      $ans      comment
+     * @param data     $data     comment
+     * 
+     * @return registration()
+     */
     public function registration($name, $mobile, $email, $password, $ques, $ans, $data)
     {
         $msg='';
@@ -59,7 +84,15 @@ class Userclass
         }
         return $msg;
     }   
-    
+    /**
+     * Function for login
+     * 
+     * @param username $username comment
+     * @param password $password comment
+     * @param data     $data     comment
+     * 
+     * @return login()
+     */
     public function login($username, $password, $data)
     {
         $sql= "SELECT * FROM `tbl_user` WHERE 

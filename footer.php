@@ -1,7 +1,7 @@
 <div class="facebook-section">
 <div class="container">
 <div class="face-top">
-    <h5><img src="images/facebook.png"><span>News From the center is India have won the toss and they have decided to bowl first. Stay tuned for more updates!</span><h5>
+    <h5><img src="images/facebook.png"><span>Web hosting is the process of buying space to house a website on the World Wide Web. For More visit www.google.com</span><h5>
 </div>
 </div>
 </div>
@@ -66,7 +66,7 @@
         <div class="clearfix"></div>
     </div>
     <div class="copy-section">
-        <p>&copy; 2020 Ced Hosting. All rights reserved | Designed by <a href="#">Abhishek Singh @ CEDCOSS</a></p>
+        <p>&copy; 2020 Ced Hosting. All rights reserved | Designed by <a href="cedcoss.com">Abhishek Singh @ CEDCOSS</a></p>
     </div>
 </div>
 </div>

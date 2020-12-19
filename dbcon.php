@@ -12,7 +12,7 @@
  * This is a "Docblock Comment," also known as a "docblock."  The class'
  * docblock, below, contains a complete description of how to write these.
  */
-class dbcon
+class dbcons
 {
     public $servername; 
     public $dbuser ;
@@ -30,7 +30,7 @@ class dbcon
         return $this->conn;
     }
 }
-$con = new dbcon();
+$con = new dbcons();
 $con->connect();
 
 ?>

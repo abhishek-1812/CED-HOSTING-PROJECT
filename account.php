@@ -1,16 +1,20 @@
-<!--
-Au<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <?php
-
+/**
+ * Short description for code
+ * php version 7.2.10
+ * 
+ * @category Category_Name
+ * @package  PackageName
+ * @author   Abhishek Singh <author@example.com>
+ * @license  http://www.php.net/license/3_01.txt 
+ * @link     http://pear.php.net/package/PackageName 
+ * 
+ * This is a "Docblock Comment,"
+ */
 require 'header.php';
-require 'dbcon.php';
+// require 'dbcon.php';
 require 'userclass.php';
-$obj = new dbcon();
+$obj = new dbcons();
 $data = $obj->connect();
 //session_start();
 $errors = array();
@@ -35,89 +39,89 @@ $msg = '';
 <!---fonts-->
 <!--script-->
 <link rel="stylesheet" href="css/swipebox.css">
-			<script src="js/jquery.swipebox.min.js"></script> 
-			    <script type="text/javascript">
-					jQuery(function($) {
-						$(".swipebox").swipebox();
-					});
-				</script>
+            <script src="js/jquery.swipebox.min.js"></script> 
+                <script type="text/javascript">
+                    jQuery(function($) {
+                        $(".swipebox").swipebox();
+                    });
+                </script>
 <!--script-->
 </head>
 <body>
-	<!---header--->
-		
-	<!---header--->
-		<!---login--->
-			<div class="content">
-				<!-- registration -->
-	<div class="main-1">
-		<div class="container">
-			<div class="register">
-		  	  <form action="#" id="mf" method="post"> 
-				 <div class="register-top-grid">
-					<h3>personal information</h3>
-					 <div>
-						<span>Name<label>*</label></span>
-						<input type="text" id="names" required> 
-					 </div>
-					 <div>
-						<span>Mobile<label>*</label></span>
-						<input type="text" id="mob" required> 
-					 </div>
-					 <div>
-						 <span>Email Address<label>*</label></span>
-						 <input type="text" id="mail" name="email" required> 
-					 </div>
-					 <div class="clearfix"> </div>
-					   <a class="news-letter" href="#">
-						 <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Sign Up for Newsletter</label>
-					   </a>
-					 </div>
-				     <div class="register-bottom-grid">
-					 
-						    <h3>login information</h3>
-							 <div>
-								<span>Password<label>*</label></span>
-								<input type="password" id="pass" required>
-							 </div>
-							 <div>
-								<span>Confirm Password<label>*</label></span>
-								<input type="password" id="repass" required>
-							 </div>
-							 <div class="register-bottom-grid">
-							 <span>Security Question<label>*</label></span>
-								<select name="" id="que">
-									<option value="">Select Your Question </option>
-									<option value="What is Your Nick Name?">What is Your Nick Name?</option>
-									<option value="What is Your Favourite Sport?">What is Your Favourite Sport?</option>
-									<option value="Who is Your Favourite Actor?">Who is Your Favourite Actor?</option>
-									<option value="What is Your Favourite Movie?">What is Your Favourite Movie?</option>
-								</select>
-					 		</div>
-							 <div class="register-bottom-grid">
-								<span>Your Answer<label>*</label></span>
-								<input type="text" id="ans" required>
-							 </div>
-							 <div class="register-but">
-							 <input type="submit" name="submit" id="submits" value="submit">
-							 <div class="clearfix"> </div>
-							 </div>
-					 </div>
-				
-				<div class="clearfix"> </div>
-				</form>
-				<!-- <div class="register-but">
-				
-					   <input type="submit" name="submit" value="submit">
-					   <div class="clearfix"> </div>
-				  
-				</div> -->
-		   </div>
-		 </div>
-	</div>
+    <!---header--->
+        
+    <!---header--->
+        <!---login--->
+            <div class="content">
+                <!-- registration -->
+    <div class="main-1">
+        <div class="container">
+            <div class="register">
+                <form action="#" id="mf" method="post"> 
+                 <div class="register-top-grid">
+                    <h3>personal information</h3>
+                     <div>
+                        <span>Name<label>*</label></span>
+                        <input type="text" id="names" required> 
+                     </div>
+                     <div>
+                        <span>Mobile<label>*</label></span>
+                        <input type="text" id="mob" required> 
+                     </div>
+                     <div>
+                         <span>Email Address<label>*</label></span>
+                         <input type="text" id="mail" name="email" required> 
+                     </div>
+                     <div class="clearfix"> </div>
+                       <a class="news-letter" href="#">
+                         <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Sign Up for Newsletter</label>
+                       </a>
+                     </div>
+                     <div class="register-bottom-grid">
+                     
+                            <h3>login information</h3>
+                             <div>
+                                <span>Password<label>*</label></span>
+                                <input type="password" id="pass" required>
+                             </div>
+                             <div>
+                                <span>Confirm Password<label>*</label></span>
+                                <input type="password" id="repass" required>
+                             </div>
+                             <div class="register-bottom-grid">
+                             <span>Security Question<label>*</label></span>
+                                <select name="" id="que">
+                                    <option value="">Select Your Question </option>
+                                    <option value="What is Your Nick Name?">What is Your Nick Name?</option>
+                                    <option value="What is Your Favourite Sport?">What is Your Favourite Sport?</option>
+                                    <option value="Who is Your Favourite Actor?">Who is Your Favourite Actor?</option>
+                                    <option value="What is Your Favourite Movie?">What is Your Favourite Movie?</option>
+                                </select>
+                             </div>
+                             <div class="register-bottom-grid">
+                                <span>Your Answer<label>*</label></span>
+                                <input type="text" id="ans" required>
+                             </div>
+                             <div class="register-but">
+                             <input type="submit" name="submit" id="submits" value="submit">
+                             <div class="clearfix"> </div>
+                             </div>
+                     </div>
+                
+                <div class="clearfix"> </div>
+                </form>
+                <!-- <div class="register-but">
+                
+                       <input type="submit" name="submit" value="submit">
+                       <div class="clearfix"> </div>
+                  
+                </div> -->
+           </div>
+         </div>
+    </div>
 <!-- registration -->
 
-			</div>
+            </div>
 <!-- <script>
 $(document).ready(function(){
     var name;
@@ -191,7 +195,7 @@ $(document).ready(function(){
             // if(name == ''|| mobile ==''|| email == '' || sec_ques == ''|| sec_ans =='' || password=='' ||repassword =='') {
             //     alert("feilds are required");
             // } else {
-				var action = "signup";
+                var action = "signup";
             $.ajax({
                 //alert(name)
                 url: 'ajaxaction.php',

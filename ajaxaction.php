@@ -15,7 +15,7 @@
 require 'dbcon.php';
 require 'userclass.php';
 require 'Admin/Productclass.php';
-$obj = new dbcon();
+$obj = new dbcons();
 $data = $obj->connect();
 $userobjects = new Userclass();
 $prodobjects = new Productclass();
@@ -37,7 +37,7 @@ if (isset($_POST['action'])) {
         echo ($msg);
         break;
 
-    case 'login':
+    case'login':
         $username = $_POST['username'];
         $password = $_POST['password'];
         $msg = $userobjects->login($username, $password, $data);
@@ -48,7 +48,7 @@ if (isset($_POST['action'])) {
         $name = $_POST['name'];
         $link = $_POST['link'];
         $avail = $_POST['available'];
-        $msg = $prodobjects->EnterProduct($name, $link, $avail, $data);
+        $msg = $prodobjects->enterProduct($name, $link, $avail, $data);
         echo $msg;
         break;
 
@@ -60,7 +60,7 @@ if (isset($_POST['action'])) {
 
     case 'editProduct':
         $id = $_POST['id'];
-        $msg =  $prodobjects->EditProduct($id, $data);
+        $msg =  $prodobjects->editProduct($id, $data);
         echo $msg;
         break;
 
@@ -69,7 +69,7 @@ if (isset($_POST['action'])) {
         $name = $_POST['pname'];
         $link = $_POST['plink'];
         $avail = $_POST['pavailable'];
-        $msg = $prodobjects->UpdateProduct($id, $name, $link, $avail, $data);
+        $msg = $prodobjects->updateProduct($id, $name, $link, $avail, $data);
         echo $msg;
         break;
 
@@ -94,7 +94,7 @@ if (isset($_POST['action'])) {
             "mail"=>$mailbox,
         );
         $desc=json_encode($description);
-        $msg = $prodobjects->InsertProduct($sel, $pname, $url, $monthprice, $annualprice, $sku, $desc, $data);
+        $msg = $prodobjects->insertProduct($sel, $pname, $url, $monthprice, $annualprice, $sku, $desc, $data);
         print_r($msg);
 
         break;
@@ -119,7 +119,7 @@ if (isset($_POST['action'])) {
         $mail = $_POST['mail'];
         $pid = $_POST['pid'];
         
-        $msg = $prodobjects->UpdatedProduct($sel, $pname, $url, $monthprice, $annualprice, $sku, $space, $domain, $band, $tech, $mail, $pid, $data);
+        $msg = $prodobjects->updatedProduct($sel, $pname, $url, $monthprice, $annualprice, $sku, $space, $domain, $band, $tech, $mail, $pid, $data);
         echo $msg;
         break;
 

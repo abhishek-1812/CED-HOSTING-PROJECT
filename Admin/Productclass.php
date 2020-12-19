@@ -9,17 +9,36 @@
  * @license  http://www.php.net/license/3_01.txt 
  * @link     http://pear.php.net/package/PackageName 
  * 
- * This is a "Docblock Comment," also known as a "docblock."  The class'
- * docblock, below, contains a complete description of how to write these.
+ * This is a "Docblock Comment,"
  */
-
+/**
+ * Product Class Doc Comment
+ * 
+ * @category  Class
+ * @package   Productclass
+ * @author    Abhishek Singh <author@example.com>
+ * @copyright 2020 Company, Inc. All rights reserved.
+ * @license   GNU General Public License version.
+ * @link      http://company.com
+ * 
+ * @since 1.0.1
+ */
 class Productclass
 {
     public $name;
     public $link;
     public $avail;
-
-    public function EnterProduct($name, $link, $avail, $data)
+    /**
+     * Function for Edit Product
+     * 
+     * @param name  $name  comment
+     * @param link  $link  comment
+     * @param avail $avail comment
+     * @param data  $data  comment
+     * 
+     * @return fetchProduct()
+     */ 
+    public function enterProduct($name, $link, $avail, $data)
     {
         $sql = "INSERT INTO `tbl_product` (`prod_name`,`html`,`prod_available`) 
             VALUES ('".$name."','".$link."','".$avail."')";
@@ -30,7 +49,14 @@ class Productclass
             $msg =  'Error';
         } 
         return $msg;       
-    }   
+    }
+    /**
+     * Function for fetch Product
+     * 
+     * @param data $data comment
+     * 
+     * @return fetchProduct()
+     */   
     public function fetchProduct($data)
     {
         $row['data'] = array();
@@ -46,6 +72,14 @@ class Productclass
             return false;
         }       
     }
+    /**
+     * Function for Delete Product
+     * 
+     * @param id   $id   comment
+     * @param data $data comment
+     * 
+     * @return deleteProduct()
+     */
     public function deleteProduct($id, $data)
     {
         $sql = "DELETE FROM `tbl_product` WHERE `id` = '$id'";
@@ -57,7 +91,15 @@ class Productclass
         }
         return $out;
     }
-    public function EditProduct($id, $data)
+    /**
+     * Function for Edit Product
+     * 
+     * @param id   $id   comment
+     * @param data $data comment
+     * 
+     * @return EditProduct()
+     */
+    public function editProduct($id, $data)
     {
 
         $sql = "SELECT * FROM `tbl_product` WHERE `id`='$id'";
@@ -71,9 +113,20 @@ class Productclass
             return 'No data Found';
         }
     }
-    public function UpdateProduct($id, $name, $link, $avail, $data)
+    /**
+     * Function for update Product
+     * 
+     * @param id    $id    comment
+     * @param name  $name  comment
+     * @param link  $link  comment
+     * @param avail $avail comment
+     * @param data  $data  comment
+     * 
+     * @return updateProduct()
+     */
+    public function updateProduct($id, $name, $link, $avail, $data)
     {
-        $output;
+        // $output;
         $sql = "UPDATE `tbl_product` SET `prod_name`= '$name' ,`html`='$link',`prod_available`='$avail' WHERE `id`='$id'";
         if ($data->query($sql) === true) {
             $output =  1;
@@ -82,8 +135,21 @@ class Productclass
         }
           return $output;
     }
-
-    public function InsertProduct($sel, $pname, $url, $monthprice, $annualprice, $sku, $desc, $data)
+    /**
+     * Function for insert Product
+     * 
+     * @param sel         $sel         comment
+     * @param pname       $pname       comment
+     * @param url         $url         comment
+     * @param monthprice  $monthprice  comment
+     * @param annualprice $annualprice comment
+     * @param sku         $sku         comment
+     * @param desc        $desc        comment
+     * @param data        $data        comment
+     * 
+     * @return insertProduct()
+     */
+    public function insertProduct($sel, $pname, $url, $monthprice, $annualprice, $sku, $desc, $data)
     {
         $sql = "INSERT INTO `tbl_product`(`prod_parent_id`,`prod_name`,`html`,`prod_available`,`prod_launch_date`) VALUES 
         ('$sel','$pname','$url','1',NOW())";
@@ -103,6 +169,13 @@ class Productclass
         }
           return $output;
     }
+    /**
+     * Function for view Product
+     * 
+     * @param data $data comment
+     * 
+     * @return viewProduct()
+     */
     public function viewProduct($data)
     {       
         $row['data'] = array();
@@ -110,13 +183,7 @@ class Productclass
         $dat=$data->query($sql);
         if ($dat->num_rows>0) {
             while ($row=$dat->fetch_assoc()) {
-                // if ($row['prod_available']=='1') {
-
-                //     $available="available";
-                // }
-                // else {
-                //     $available="unavailable";
-                // }
+              
                 $desc=json_decode($row['description']);
 
                 $webs=$desc->{'webspace'};
@@ -124,8 +191,6 @@ class Productclass
                 $domain=$desc->{'domain'};
                 $language=$desc->{'lang'};
                 $mail=$desc->{'mail'};
-
-        
 
                 $arr['data'][] = array($row['prod_parent_id'], $row['prod_name'], $row['html'], $row['mon_price'],
                 $row['annual_price'],$row['sku'],$row['prod_available'],$row['prod_launch_date'], $webs, $band, $domain, $language, $mail, "<a href='javascript:void(0)' class='btn btn-success'
@@ -140,6 +205,13 @@ class Productclass
         }
    
     }
+    /**
+     * Function for display Service
+     * 
+     * @param data $data comment
+     * 
+     * @return displayService()
+     */
     public function displayService($data)
     {
         $sql = "SELECT * FROM  `tbl_product` WHERE `prod_parent_id`=1";
@@ -153,6 +225,14 @@ class Productclass
             return 'No data Found';
         }
     }
+    /**
+     * Function for Edit All Product
+     * 
+     * @param id   $id   comment
+     * @param data $data comment
+     * 
+     * @return editAllProduct()
+     */
     public function editAllProduct($id, $data)
     {     
         $arr = array();  
@@ -171,7 +251,26 @@ class Productclass
         }
         return json_encode($arr);
     }
-    public function UpdatedProduct($sel, $pname, $url, $monthprice, $annualprice, $sku, $space, $domain, $band, $tech, $mail, $pid, $data)
+    /**
+     * Function for updated Product
+     * 
+     * @param sel         $sel         comment
+     * @param pname       $pname       comment
+     * @param url         $url         comment
+     * @param monthprice  $monthprice  comment
+     * @param annualprice $annualprice comment
+     * @param sku         $sku         comment
+     * @param space       $space       comment
+     * @param domain      $domain      comment
+     * @param band        $band        comment
+     * @param tech        $tech        comment
+     * @param mail        $mail        comment
+     * @param pid         $pid         comment
+     * @param data        $data        comment
+     * 
+     * @return updatedProduct()
+     */
+    public function updatedProduct($sel, $pname, $url, $monthprice, $annualprice, $sku, $space, $domain, $band, $tech, $mail, $pid, $data)
     {
         $description = array(
             'webspace'=>$space,
@@ -202,6 +301,14 @@ class Productclass
         }
         return $msg;
     }
+    /**
+     * Function for delete All Product
+     * 
+     * @param id   $id   comment
+     * @param data $data comment
+     * 
+     * @return deleteAllProduct()
+     */
     public function deleteAllProduct($id, $data)
     {      
         $sql = "DELETE `tbl_product`,`tbl_product_description` FROM `tbl_product`
@@ -217,7 +324,15 @@ class Productclass
         }
         return $msg;
     }
-    public function FetchHosting($id, $data)
+    /**
+     * Function for fetch Hosting
+     * 
+     * @param id   $id   comment
+     * @param data $data comment
+     * 
+     * @return fetchHosting()
+     */
+    public function fetchHosting($id, $data)
     {
         $sql = "SELECT * FROM `tbl_product` WHERE `id`='$id'";
         $result = $data->query($sql);
@@ -232,6 +347,28 @@ class Productclass
             echo "0 results";
         }
 
+    }
+    /**
+     * Function for fetch Hosting Details
+     * 
+     * @param id   $id   comment
+     * @param data $data comment
+     * 
+     * @return fetchHostingDetails()
+     */
+    public function fetchHostingDetails($id, $data)
+    {
+        $sql = "SELECT * FROM `tbl_product` INNER JOIN `tbl_product_description` ON `tbl_product`.`id`= `tbl_product_description`.`prod_id` WHERE `prod_parent_id`='$id'";
+        $result = $data->query($sql);
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+                $arr[] = $row;
+            }
+            return $arr;
+        } else {
+            return false;
+        }
     }
 }
 ?>

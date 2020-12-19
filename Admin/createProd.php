@@ -15,7 +15,7 @@
 require 'header1.php';
 require 'Productclass.php';
 require '../dbcon.php';
-$obj = new dbcon();
+$obj = new dbcons();
 $data = $obj->connect();
 $prodobjects = new Productclass();
 $msg  = $prodobjects->displayService($data);
